@@ -8,7 +8,14 @@ test('applies plugins', async t => {
   t.is(code, out.trim())
 })
 
+test('works with expressions', async t => {
+  const {code} = await transform('./fixtures/expressions.js')
+  const out = await read('./fixtures/expressions.out.js')
+  t.is(code, out.trim())
+})
+
 test('check syntax', async t => {
   const error = await t.throws(transform('./fixtures/syntax-error.js'))
   t.is(error.name, 'CssSyntaxError')
 })
+
